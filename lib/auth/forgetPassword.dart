@@ -170,7 +170,7 @@ class forgetPassword extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
                             vertical: 17,
-                            horizontal: 141.2,
+                            horizontal: 138,
                           ),
                           child: Text(
                             'CONFIRM',

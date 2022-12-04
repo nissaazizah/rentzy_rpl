@@ -19,7 +19,7 @@ void main() async {
   runApp(MaterialApp(
     theme: ThemeData(),
     debugShowCheckedModeBanner: false,
-    home: Landing(),
+    home: MainPage(),
     // ignore: prefer_const_constructors
     // initialRoute: '/login',
     // routes: {

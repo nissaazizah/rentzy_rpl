@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "181760295083",
+    "firebase_url": "https://rentzy-5aab0-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "rentzy-5aab0",
     "storage_bucket": "rentzy-5aab0.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "181760295083-ntn35gtb67qg3bmrbqs2nga0rsflt7uk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rentzy_rpl",
+            "certificate_hash": "d755d4f4a1198c3f6147d284c12b9cf16216dde8"
+          }
+        },
         {
           "client_id": "181760295083-6ob7svbin1m5gie94b4a5p7d7ue09nfb.apps.googleusercontent.com",
           "client_type": 3

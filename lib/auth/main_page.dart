@@ -2,12 +2,17 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:rentzy_rpl/auth/auth.dart';
 import 'package:rentzy_rpl/pages/home.dart';
+import 'package:rentzy_rpl/pages/landing.dart';
 
-class MainPage extends StatelessWidget {
+class MainPage extends StatefulWidget {
   const MainPage({super.key});
 
+  @override
+  State<MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,9 +20,12 @@ class MainPage extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
+            print(snapshot.data);
+            print("User Signed In");
             return Home();
           } else {
-            return Auth();
+            print(snapshot);
+            return Landing();
           }
         },
       ),

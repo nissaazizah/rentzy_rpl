@@ -175,7 +175,7 @@ class _RegisterOtpState extends State<RegisterOtp> {
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
                             vertical: 17,
-                            horizontal: 141.2,
+                            horizontal: 139.2,
                           ),
                           child: Text(
                             'CONFIRM',

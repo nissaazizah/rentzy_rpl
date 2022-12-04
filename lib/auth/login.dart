@@ -153,7 +153,7 @@ class _LoginState extends State<Login> {
                       onTap: logIn,
                       child: Container(
                         padding: const EdgeInsets.symmetric(
-                            vertical: 17, horizontal: 152),
+                            vertical: 17, horizontal: 147.8),
                         decoration: BoxDecoration(
                           color: const Color(0xffF54768),
                           borderRadius: BorderRadius.circular(10),

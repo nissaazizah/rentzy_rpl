@@ -20,7 +20,7 @@ class _RegisterState extends State<Register> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _repasswordController = TextEditingController();
-  final _phoneControler = TextEditingController();
+  final _usernameController = TextEditingController();
 
   checkPassword() {
     if (_passwordController.text != _repasswordController.text) {
@@ -42,7 +42,7 @@ class _RegisterState extends State<Register> {
     _emailController.dispose();
     _passwordController.dispose();
     _repasswordController.dispose();
-    _phoneControler.dispose();
+    _usernameController.dispose();
     super.dispose();
   }
 
@@ -124,10 +124,10 @@ class _RegisterState extends State<Register> {
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(15, 2.5, 0, 2.5),
                         child: TextField(
-                          controller: _phoneControler,
+                          controller: _usernameController,
                           decoration: InputDecoration(
                             border: InputBorder.none,
-                            hintText: "Phone Number",
+                            hintText: "Username",
                             hintStyle: GoogleFonts.montserrat(
                               fontSize: 16,
                               fontWeight: FontWeight.w300,
@@ -212,7 +212,7 @@ class _RegisterState extends State<Register> {
                       child: Container(
                         padding: const EdgeInsets.symmetric(
                           vertical: 17,
-                          horizontal: 136,
+                          horizontal: 134.8,
                         ),
                         decoration: BoxDecoration(
                           color: const Color(0xffF54768),

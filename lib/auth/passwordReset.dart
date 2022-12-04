@@ -162,7 +162,7 @@ class _passwordResetState extends State<passwordReset> {
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
                             vertical: 17,
-                            horizontal: 141.2,
+                            horizontal: 139.3,
                           ),
                           child: Text(
                             'CONFIRM',
