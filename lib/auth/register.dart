@@ -1,9 +1,13 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rentzy_rpl/auth/RegisterOtp.dart';
+import 'package:rentzy_rpl/auth/auth.dart';
+import 'package:rentzy_rpl/auth/login.dart';
 
 class Register extends StatefulWidget {
   final VoidCallback showLoginPage;
@@ -23,10 +27,10 @@ class _RegisterState extends State<Register> {
   final _usernameController = TextEditingController();
 
   checkPassword() {
-    if (_passwordController.text != _repasswordController.text) {
+    if (_passwordController.text == _repasswordController.text) {
       return _passwordController.text.trim();
     } else {
-      print("password is correct");
+      print("password is incorrect");
     }
   }
 
@@ -34,6 +38,15 @@ class _RegisterState extends State<Register> {
     await FirebaseAuth.instance.createUserWithEmailAndPassword(
       email: _emailController.text.trim(),
       password: checkPassword(),
+    );
+    FirebaseAuth.instance.currentUser!.updateDisplayName(
+      _usernameController.text.trim(),
+    );
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const Auth(),
+      ),
     );
   }
 
@@ -202,13 +215,16 @@ class _RegisterState extends State<Register> {
 
                     //register button
                     GestureDetector(
-                      onTap: (() {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => RegisterOtp()),
-                        );
-                      }),
+                      // onTap: (() {
+                      //   Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => RegisterOtp()),
+                      //   );
+                      // }),
+                      onTap: () {
+                        register();
+                      },
                       child: Container(
                         padding: const EdgeInsets.symmetric(
                           vertical: 17,

@@ -24,7 +24,7 @@ class _MainPageState extends State<MainPage> {
             print("User Signed In");
             return Home();
           } else {
-            print(snapshot);
+            print('User not logged in');
             return Landing();
           }
         },

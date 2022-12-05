@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rentzy_rpl/auth/main_page.dart';
 import 'package:rentzy_rpl/pages/history.dart';
 
 class Profile extends StatelessWidget {
@@ -13,14 +14,15 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xff41436A),
       body: SafeArea(
         child: Column(
           children: [
             Padding(
               padding: EdgeInsets.only(
                 top: 32,
-                right: 24,
-                left: 24,
+                // right: 24,
+                // left: 24,
               ),
               child: Center(
                 child: Column(
@@ -34,14 +36,20 @@ class Profile extends StatelessWidget {
                       height: 8,
                     ),
                     Text(
-                      'Goo Younjung',
+                      user.displayName!,
                       style: GoogleFonts.montserrat(
-                          fontSize: 24, fontWeight: FontWeight.w500),
+                        fontSize: 24,
+                        fontWeight: FontWeight.w500,
+                        color: Color(0xffffffff),
+                      ),
                     ),
                     Text(
-                      'YounjungGoo@gmail.com',
+                      user.email!,
                       style: GoogleFonts.montserrat(
-                          fontSize: 12, fontWeight: FontWeight.w300),
+                        fontSize: 12,
+                        fontWeight: FontWeight.w300,
+                        color: Color(0xffffffff),
+                      ),
                     ),
                     SizedBox(
                       height: 64,
@@ -49,140 +57,174 @@ class Profile extends StatelessWidget {
 
                     //Edit Profile
                     Container(
-                      padding: EdgeInsets.symmetric(
-                        vertical: 15,
-                        horizontal: 24,
-                      ),
                       decoration: BoxDecoration(
                         color: Color(0xffD9D9D9),
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(28),
+                          topRight: Radius.circular(28),
+                        ),
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      padding: EdgeInsets.only(
+                        top: 32,
+                        right: 24,
+                        left: 24,
+                        bottom: 200,
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Icon(
-                            FeatherIcons.user,
-                            size: 20,
-                            color: Color(0xff0E0F0E),
+                          SizedBox(
+                            height: 87,
                           ),
-                          Spacer(
-                            flex: 1,
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                              vertical: 15,
+                              horizontal: 24,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Color(0xffffffff),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Icon(
+                                  FeatherIcons.user,
+                                  size: 20,
+                                  color: Color(0xff0E0F0E),
+                                ),
+                                SizedBox(
+                                  width: 16,
+                                ),
+                                Text(
+                                  'Edit Profile',
+                                  style: GoogleFonts.montserrat(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w400,
+                                      color: Color(0xff0E0F0E)),
+                                ),
+                                Spacer(
+                                  flex: 6,
+                                ),
+                                Icon(
+                                  FeatherIcons.chevronRight,
+                                  size: 20,
+                                )
+                              ],
+                            ),
                           ),
-                          Text(
-                            'Edit Profile',
-                            style: GoogleFonts.montserrat(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w400,
-                                color: Color(0xff0E0F0E)),
+
+                          SizedBox(
+                            height: 24,
                           ),
-                          Spacer(
-                            flex: 6,
+
+                          //History
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => History(),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              padding: EdgeInsets.symmetric(
+                                vertical: 15,
+                                horizontal: 24,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Color(0xffffffff),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Icon(
+                                    FeatherIcons.map,
+                                    size: 20,
+                                    color: Color(0xff0E0F0E),
+                                  ),
+                                  SizedBox(
+                                    width: 16,
+                                  ),
+                                  Text(
+                                    'History',
+                                    style: GoogleFonts.montserrat(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w400,
+                                        color: Color(0xff0E0F0E)),
+                                  ),
+                                  Spacer(
+                                    flex: 6,
+                                  ),
+                                  Icon(
+                                    FeatherIcons.chevronRight,
+                                    size: 20,
+                                  )
+                                ],
+                              ),
+                            ),
                           ),
-                          Icon(
-                            FeatherIcons.chevronRight,
-                            size: 20,
-                          )
+
+                          SizedBox(
+                            height: 24,
+                          ),
+
+                          //LogOut
+                          GestureDetector(
+                            onTap: () {
+                              FirebaseAuth.instance.signOut();
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => MainPage(),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              padding: EdgeInsets.symmetric(
+                                vertical: 15,
+                                horizontal: 24,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.redAccent,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Icon(
+                                    FeatherIcons.logOut,
+                                    size: 20,
+                                    color: Color(0xffffffff),
+                                  ),
+                                  SizedBox(
+                                    width: 16,
+                                  ),
+                                  Text(
+                                    'Log Out',
+                                    style: GoogleFonts.montserrat(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w400,
+                                        color: Color(0xffffffff)),
+                                  ),
+                                  Spacer(
+                                    flex: 6,
+                                  ),
+                                  Icon(
+                                    FeatherIcons.chevronRight,
+                                    size: 20,
+                                    color: Color(0xffffffff),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
                         ],
-                      ),
-                    ),
-
-                    SizedBox(
-                      height: 16,
-                    ),
-
-                    //History
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => History(),
-                          ),
-                        );
-                      },
-                      child: Container(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 15,
-                          horizontal: 24,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Color(0xffD9D9D9),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Icon(
-                              FeatherIcons.map,
-                              size: 20,
-                              color: Color(0xff0E0F0E),
-                            ),
-                            Spacer(
-                              flex: 1,
-                            ),
-                            Text(
-                              'History',
-                              style: GoogleFonts.montserrat(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w400,
-                                  color: Color(0xff0E0F0E)),
-                            ),
-                            Spacer(
-                              flex: 6,
-                            ),
-                            Icon(
-                              FeatherIcons.chevronRight,
-                              size: 20,
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-
-                    SizedBox(
-                      height: 16,
-                    ),
-
-                    //LogOut
-                    GestureDetector(
-                      onTap: () => FirebaseAuth.instance.signOut(),
-                      child: Container(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 15,
-                          horizontal: 24,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.redAccent,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Icon(
-                              FeatherIcons.logOut,
-                              size: 20,
-                              color: Color(0xffffffff),
-                            ),
-                            Spacer(
-                              flex: 1,
-                            ),
-                            Text(
-                              'Log Out',
-                              style: GoogleFonts.montserrat(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w400,
-                                  color: Color(0xffffffff)),
-                            ),
-                            Spacer(
-                              flex: 6,
-                            ),
-                            Icon(
-                              FeatherIcons.chevronRight,
-                              size: 20,
-                              color: Color(0xffffffff),
-                            )
-                          ],
-                        ),
                       ),
                     )
                   ],
